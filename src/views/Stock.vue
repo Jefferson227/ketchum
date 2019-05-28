@@ -1,43 +1,98 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <v-text-field v-model="product" label="Produto" required></v-text-field>
+  <v-layout row>
+    <v-flex xs12 sm6 lg12>
+      <v-list two-line>
+        <template v-for="(item, index) in items">
+          <v-list-tile
+            :key="item.title"
+            avatar
+            ripple
+            @click="toggle(index)"
+          >
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.product }}</v-list-tile-title>
+              <v-list-tile-sub-title class="text--primary">{{ item.unitOfMeasure }}</v-list-tile-sub-title>
+              <v-list-tile-sub-title>{{ item.package }}</v-list-tile-sub-title>
+            </v-list-tile-content>
 
-    <v-text-field v-model="store" label="Local" required></v-text-field>
+            <v-list-tile-action>
+              <v-list-tile-action-text>{{ item.quantityAvailable }}</v-list-tile-action-text>
+              <v-icon
+                v-if="selected.indexOf(index) < 0"
+                color="grey lighten-1"
+              >
+                star_border
+              </v-icon>
 
-    <v-text-field v-model="packing" label="Embalagem" required></v-text-field>
+              <v-icon
+                v-else
+                color="yellow darken-2"
+              >
+                star
+              </v-icon>
+            </v-list-tile-action>
 
-    <v-select v-model="unitOfMeasure" :items="unitsOfMeasure" label="Unidade de medida" required></v-select>
-
-    <v-text-field v-model="unitPrice" label="Preço unitário" required></v-text-field>
-
-    <v-text-field v-model="priceByUnitOfMeasure" label="Preço por kg/litro" required></v-text-field>
-
-    <v-btn :disabled="!valid" color="success" @click="validate">Validate</v-btn>
-  </v-form>
+          </v-list-tile>
+          <v-divider
+            v-if="index + 1 < items.length"
+            :key="index"
+          ></v-divider>
+        </template>
+      </v-list>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
-export default {
-  data: () => ({
-    valid: true,
-    product: '',
-    store: '',
-    packing: '',
-    unitOfMeasure: null,
-    unitsOfMeasure: ['Grama', 'Mililitro', 'Unidade'],
-    unitPrice: '',
-    priceByUnitOfMeasure: ''
-  }),
+  export default {
+    data () {
+      return {
+        selected: [2],
+        items: [
+          {
+            quantityAvailable: '2',
+            unitOfMeasure: 'Grama',
+            product: 'Produto 1',
+            package: "1000"
+          },
+          {
+            quantityAvailable: '10',
+            unitOfMeasure: 'Unidade',
+            product: 'Produto 2',
+            package: "14"
+          },
+          {
+            quantityAvailable: '12',
+            unitOfMeasure: 'Mililitro',
+            product: 'Produto 3',
+            package: "1000"
+          },
+          {
+            quantityAvailable: '23',
+            unitOfMeasure: 'Grama',
+            product: 'Produto 4',
+            package: "1000"
+          },
+          {
+            quantityAvailable: '2',
+            unitOfMeasure: 'Grama',
+            product: 'Produto 4',
+            package: "85"
+          }
+        ]
+      }
+    },
 
-  methods: {
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true;
+    methods: {
+      toggle (index) {
+        const i = this.selected.indexOf(index)
+
+        if (i > -1) {
+          this.selected.splice(i, 1)
+        } else {
+          this.selected.push(index)
+        }
       }
     }
   }
-};
 </script>
-
-<style>
-</style>
