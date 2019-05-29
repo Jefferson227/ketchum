@@ -20,11 +20,7 @@
               <v-text-field label="Embalagem*" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-select
-                :items="['Grama', 'Mililitro', 'Unidade']"
-                label="Unidade de medida*"
-                required
-              ></v-select>
+              <v-select :items="unitsOfMeasure" label="Unidade de medida*" required></v-select>
             </v-flex>
             <v-flex xs12>
               <v-text-field label="Preço unitário*" type="text" required></v-text-field>
@@ -49,7 +45,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      unitsOfMeasure: ['Grama', 'Mililitro', 'Unidade']
+    };
   },
   props: {
     isVisible: Boolean

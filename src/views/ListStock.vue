@@ -18,6 +18,9 @@
       </v-list>
     </v-flex>
     <ManageStock :isVisible="showModal" @close="showModal = false"/>
+    <v-btn fab bottom right color="pink" dark fixed @click="createItem">
+      <v-icon>add</v-icon>
+    </v-btn>
   </v-layout>
 </template>
 
@@ -62,6 +65,9 @@ export default {
   },
   methods: {
     openItem(itemId) {
+      this.showModal = true;
+    },
+    createItem() {
       this.showModal = true;
     }
   }
