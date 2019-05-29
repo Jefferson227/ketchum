@@ -57,15 +57,13 @@
 
 <script>
 export default {
-  data: () => ({
-    dialog: {}
-  }),
+  data: () => ({}),
   props: {
     isVisible: Boolean
   },
   methods: {
     close() {
-      this.isVisible = false;
+      this.$emit('close');
     }
   }
 };
