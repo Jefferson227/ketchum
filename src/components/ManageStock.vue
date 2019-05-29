@@ -6,44 +6,38 @@
           <v-btn icon dark @click="close">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Novo produto</v-toolbar-title>
         </v-toolbar>
         <v-container grid-list-md>
           <v-layout wrap>
-            <v-flex xs12 sm6 md4>
-              <v-text-field label="Legal first name*" required></v-text-field>
+            <v-flex xs12>
+              <v-text-field label="Produto*" required></v-text-field>
             </v-flex>
-            <v-flex xs12 sm6 md4>
-              <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
+            <v-flex xs12>
+              <v-text-field label="Local"></v-text-field>
             </v-flex>
-            <v-flex xs12 sm6 md4>
-              <v-text-field
-                label="Legal last name*"
-                hint="example of persistent helper text"
-                persistent-hint
+            <v-flex xs12>
+              <v-text-field label="Embalagem*" required></v-text-field>
+            </v-flex>
+            <v-flex xs12>
+              <v-select
+                :items="['Grama', 'Mililitro', 'Unidade']"
+                label="Unidade de medida*"
                 required
-              ></v-text-field>
+              ></v-select>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Email*" required></v-text-field>
+              <v-text-field label="Preço unitário*" type="text" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Password*" type="password" required></v-text-field>
-            </v-flex>
-            <v-flex xs12 sm6>
-              <v-select :items="['0-17', '18-29', '30-54', '54+']" label="Age*" required></v-select>
+              <v-text-field label="Preço por unidade de medida*" type="text" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-autocomplete
-                :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                label="Interests"
-                multiple
-              ></v-autocomplete>
+              <v-textarea label="Comentários" type="text"></v-textarea>
             </v-flex>
             <v-flex xs12 class="text-xs-center">
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click="close">Close</v-btn>
-              <v-btn color="blue darken-1" flat @click="close">Save</v-btn>
+              <v-btn color="primary" @click="close">Salvar</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
