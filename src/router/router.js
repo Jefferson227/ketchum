@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Stock from '../views/Stock.vue';
+import ListStock from '../views/ListStock.vue';
 
 Vue.use(Router);
 
@@ -9,8 +9,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'stock',
-      component: Stock
+      name: 'ListStock',
+      component: ListStock
     }
   ]
 });
