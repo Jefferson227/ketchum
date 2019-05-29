@@ -11,7 +11,7 @@
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Produto*" required></v-text-field>
+              <v-text-field label="Produto*" v-model="product.productName" required></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field label="Local"></v-text-field>
@@ -44,13 +44,14 @@
 
 <script>
 export default {
+  props: {
+    isVisible: Boolean,
+    selectedProduct: Object
+  },
   data() {
     return {
       unitsOfMeasure: ['Grama', 'Mililitro', 'Unidade']
     };
-  },
-  props: {
-    isVisible: Boolean
   },
   methods: {
     close() {

@@ -3,13 +3,13 @@
     <v-flex xs12 sm6 lg12>
       <v-list two-line>
         <template v-for="(item, index) in items">
-          <v-list-tile :key="item.title" avatar ripple @click="openItem(index.id)">
+          <v-list-tile :key="item.title" avatar ripple @click="openItem(item)">
             <v-list-tile-content>
               <v-list-tile-title>{{ item.productName }}</v-list-tile-title>
 
               <v-list-tile-sub-title>
                 <span class="text--primary">Em estoque:</span>
-                {{ item.quantityAvailable }}
+                {{ item.quantityAvailable }}{{ item.unitOfMeasure }}
               </v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
@@ -17,7 +17,7 @@
         </template>
       </v-list>
     </v-flex>
-    <ManageStock :isVisible="showModal" @close="showModal = false"/>
+    <ManageStock :isVisible="showModal" :selectedProduct="selectedProduct" @close="resetFields"/>
     <v-btn fab bottom right color="pink" dark fixed @click="createItem">
       <v-icon>add</v-icon>
     </v-btn>
@@ -31,31 +31,57 @@ export default {
   data() {
     return {
       showModal: false,
+      selectedProduct: {},
       items: [
         {
           id: 1,
-          quantityAvailable: '5000g',
-          productName: 'Açúcar Cristal'
+          productName: 'Açúcar Cristal',
+          store: 'Fortali',
+          packageQuantity: '1000',
+          unitOfMeasure: 'g',
+          unitPrice: 2.09,
+          unitOfMeasurePrice: 2.09,
+          quantityAvailable: '5000'
         },
         {
           id: 2,
-          quantityAvailable: '2475g',
-          productName: 'Alpino em Pó'
+          productName: 'Brigadeiro Branco',
+          store: 'Amêndoa',
+          packageQuantity: '1400',
+          unitOfMeasure: 'g',
+          unitPrice: 30.85,
+          unitOfMeasurePrice: 22.04,
+          quantityAvailable: '1400'
         },
         {
           id: 3,
-          quantityAvailable: '500g',
-          productName: 'Chocolate Meio Amargo Melken'
+          productName: 'Cerejas ao Marasquinho',
+          store: 'Fortali',
+          packageQuantity: '500',
+          unitOfMeasure: 'g',
+          unitPrice: 24.21,
+          unitOfMeasurePrice: 48.42,
+          quantityAvailable: '1000'
         },
         {
           id: 4,
-          quantityAvailable: '2000ml',
-          productName: 'Chantilly Amélia Mix'
+          productName: 'Chocolate Blend Sicao',
+          store: 'Espaço Chef',
+          packageQuantity: '1050',
+          unitOfMeasure: 'g',
+          unitPrice: 29.85,
+          unitOfMeasurePrice: 29.7,
+          quantityAvailable: '2100'
         },
         {
           id: 5,
-          quantityAvailable: '2010ml',
-          productName: 'Chocolate Blend Sicao'
+          productName: 'Essência de Manteiga',
+          store: 'Empório Delice',
+          packageQuantity: '30',
+          unitOfMeasure: 'g',
+          unitPrice: 2.06,
+          unitOfMeasurePrice: 68.67,
+          quantityAvailable: '30'
         }
       ]
     };
@@ -64,11 +90,17 @@ export default {
     ManageStock
   },
   methods: {
-    openItem(itemId) {
+    openItem(product) {
+      console.log(product.productName);
       this.showModal = true;
+      this.selectedProduct = product;
     },
     createItem() {
       this.showModal = true;
+    },
+    resetFields() {
+      this.showModal = false;
+      this.selectedProduct = {};
     }
   }
 };
