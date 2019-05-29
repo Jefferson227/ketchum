@@ -6,12 +6,12 @@
           <v-btn icon dark @click="close">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Novo produto</v-toolbar-title>
+          <v-toolbar-title>{{product}}</v-toolbar-title>
         </v-toolbar>
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Produto*" v-model="product.productName" required></v-text-field>
+              <v-text-field label="Produto*" required></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field label="Local"></v-text-field>
@@ -44,14 +44,24 @@
 
 <script>
 export default {
+  data() {
+    return {
+      unitsOfMeasure: ['Grama', 'Mililitro', 'Unidade'],
+      product: {
+        id: this.selectedProduct.id,
+        productName: this.selectedProduct.productName,
+        store: this.selectedProduct.store,
+        packageQuantity: this.selectedProduct.packageQuantity,
+        unitOfMeasure: this.selectedProduct.unitOfMeasure,
+        unitPrice: this.selectedProduct.unitPrice,
+        unitOfMeasurePrice: this.selectedProduct.unitOfMeasurePrice,
+        quantityAvailable: this.selectedProduct.quantityAvailable
+      }
+    };
+  },
   props: {
     isVisible: Boolean,
     selectedProduct: Object
-  },
-  data() {
-    return {
-      unitsOfMeasure: ['Grama', 'Mililitro', 'Unidade']
-    };
   },
   methods: {
     close() {
