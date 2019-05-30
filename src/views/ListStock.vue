@@ -91,7 +91,6 @@ export default {
   },
   methods: {
     openItem(product) {
-      console.log(product.productName);
       this.showModal = true;
       this.selectedProduct = product;
     },
