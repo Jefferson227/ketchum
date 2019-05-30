@@ -2,23 +2,23 @@
   <v-layout row>
     <v-flex xs12 sm6 lg12>
       <v-list two-line>
-        <template v-for="(item, index) in items">
-          <v-list-tile :key="item.title" avatar ripple @click="openItem(item)">
+        <template v-for="(product, index) in products">
+          <v-list-tile :key="index + product.name" avatar ripple @click="openProduct(product)">
             <v-list-tile-content>
-              <v-list-tile-title>{{ item.productName }}</v-list-tile-title>
+              <v-list-tile-title>{{ product.name }}</v-list-tile-title>
 
               <v-list-tile-sub-title>
                 <span class="text--primary">Em estoque:</span>
-                {{ item.quantityAvailable }}{{ item.unitOfMeasure }}
+                {{ product.quantityAvailable }}{{ product.unitOfMeasure }}
               </v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-divider v-if="index + 1 < items.length" :key="index"></v-divider>
+          <v-divider v-if="index + 1 < products.length" :key="index"></v-divider>
         </template>
       </v-list>
     </v-flex>
     <ManageStock :isVisible="showModal" :selectedProduct="selectedProduct" @close="resetFields"/>
-    <v-btn fab bottom right color="pink" dark fixed @click="createItem">
+    <v-btn fab bottom right color="pink" dark fixed @click="createProduct">
       <v-icon>add</v-icon>
     </v-btn>
   </v-layout>
@@ -32,10 +32,10 @@ export default {
     return {
       showModal: false,
       selectedProduct: {},
-      items: [
+      products: [
         {
           id: 1,
-          productName: 'Açúcar Cristal',
+          name: 'Açúcar Cristal',
           store: 'Fortali',
           packageQuantity: '1000',
           unitOfMeasure: 'g',
@@ -45,7 +45,7 @@ export default {
         },
         {
           id: 2,
-          productName: 'Brigadeiro Branco',
+          name: 'Brigadeiro Branco',
           store: 'Amêndoa',
           packageQuantity: '1400',
           unitOfMeasure: 'g',
@@ -55,7 +55,7 @@ export default {
         },
         {
           id: 3,
-          productName: 'Cerejas ao Marasquinho',
+          name: 'Cerejas ao Marasquinho',
           store: 'Fortali',
           packageQuantity: '500',
           unitOfMeasure: 'g',
@@ -65,7 +65,7 @@ export default {
         },
         {
           id: 4,
-          productName: 'Chocolate Blend Sicao',
+          name: 'Chocolate Blend Sicao',
           store: 'Espaço Chef',
           packageQuantity: '1050',
           unitOfMeasure: 'g',
@@ -75,7 +75,7 @@ export default {
         },
         {
           id: 5,
-          productName: 'Essência de Manteiga',
+          name: 'Essência de Manteiga',
           store: 'Empório Delice',
           packageQuantity: '30',
           unitOfMeasure: 'g',
@@ -90,11 +90,11 @@ export default {
     ManageStock
   },
   methods: {
-    openItem(product) {
+    openProduct(product) {
       this.showModal = true;
       this.selectedProduct = product;
     },
-    createItem() {
+    createProduct() {
       this.showModal = true;
     },
     resetFields() {

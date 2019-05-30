@@ -6,12 +6,12 @@
           <v-btn icon dark @click="close">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>{{product.productName || 'Novo produto'}}</v-toolbar-title>
+          <v-toolbar-title>{{product.name || 'Novo produto'}}</v-toolbar-title>
         </v-toolbar>
         <v-container grid-list-md>
           <v-layout wrap>
             <v-flex xs12>
-              <v-text-field label="Produto*" v-model="product.productName" required></v-text-field>
+              <v-text-field label="Produto*" v-model="product.name" required></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-text-field label="Local" v-model="product.store"></v-text-field>
@@ -55,7 +55,6 @@ export default {
   },
   methods: {
     close() {
-      console.log(this.product);
       this.$emit('close');
     }
   },
