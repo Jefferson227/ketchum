@@ -11,13 +11,24 @@ export default new Vuex.Store({
   mutations: {
     addNewProductToStock(state, product) {
       state.stock.push(product);
+    },
+    getStock(state, stock) {
+      debugger;
+      state.stock = stock;
     }
   },
   actions: {
     addNewProductToStock: async ({ commit }, payload) => {
       const productAdded = await services.createProduct(payload);
       commit('addNewProductToStock', productAdded);
+    },
+    getStock: async ({ commit }) => {
+      const stock = await services.getStock();
+      debugger;
+      commit('getStock', stock);
     }
   },
-  getters: {}
+  getters: {
+    stock: state => state.stock
+  }
 });

@@ -32,6 +32,7 @@ export default {
     return {
       showModal: false,
       selectedProduct: {},
+      stock: {},
       products: [
         {
           id: 1,
@@ -101,6 +102,11 @@ export default {
       this.showModal = false;
       this.selectedProduct = {};
     }
+  },
+  created() {
+    this.$store.dispatch('getStock');
+    debugger;
+    this.stock = this.$store.getters.stock;
   }
 };
 </script>

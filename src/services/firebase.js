@@ -8,4 +8,12 @@ const createProduct = async product => {
   return product;
 };
 
-export default { createProduct };
+const getStock = async () => {
+  const stock = await database()
+    .ref('stock')
+    .once('value');
+
+  return stock.val();
+};
+
+export default { createProduct, getStock };
