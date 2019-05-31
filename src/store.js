@@ -5,8 +5,19 @@ import services from './services/firebase';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    stock: []
+  },
+  mutations: {
+    addNewProductToStock(state, product) {
+      state.stock.push(product);
+    }
+  },
+  actions: {
+    addNewProductToStock: async ({ commit }, payload) => {
+      const productAdded = await services.createProduct(payload);
+      commit('addNewProductToStock', productAdded);
+    }
+  },
   getters: {}
 });

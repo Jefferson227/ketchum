@@ -20,13 +20,28 @@
               <v-text-field label="Embalagem*" v-model="product.packageQuantity" required></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-select :items="unitsOfMeasure" v-model="product.unitOfMeasure" label="Unidade de medida*" required></v-select>
+              <v-select
+                :items="unitsOfMeasure"
+                v-model="product.unitOfMeasure"
+                label="Unidade de medida*"
+                required
+              ></v-select>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Preço unitário*" v-model="product.unitPrice" type="text" required></v-text-field>
+              <v-text-field
+                label="Preço unitário*"
+                v-model="product.unitPrice"
+                type="text"
+                required
+              ></v-text-field>
             </v-flex>
             <v-flex xs12>
-              <v-text-field label="Preço por unidade de medida*" v-model="product.unitOfMeasurePrice" type="text" required></v-text-field>
+              <v-text-field
+                label="Preço por unidade de medida*"
+                v-model="product.unitOfMeasurePrice"
+                type="text"
+                required
+              ></v-text-field>
             </v-flex>
             <v-flex xs12>
               <v-textarea label="Comentários" type="text" v-model="product.comments"></v-textarea>
@@ -34,6 +49,7 @@
             <v-flex xs12 class="text-xs-center">
               <v-spacer></v-spacer>
               <v-btn color="primary" @click="close">Salvar</v-btn>
+              <v-btn color="primary" @click="addNewProduct">Criar</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -56,11 +72,14 @@ export default {
   methods: {
     close() {
       this.$emit('close');
+    },
+    addNewProduct() {
+      this.$store.dispatch('addNewProductToStock', this.product);
     }
   },
   computed: {
     product() {
-      return {...this.selectedProduct}
+      return { ...this.selectedProduct };
     }
   }
 };
