@@ -1,4 +1,5 @@
 import { database } from 'firebase';
+import helper from './helper';
 
 const createProduct = async product => {
   await database()
@@ -9,11 +10,12 @@ const createProduct = async product => {
 };
 
 const getStock = async () => {
-  const stock = await database()
+  const response = await database()
     .ref('stock')
     .once('value');
 
-  return stock.val();
+  const stock = helper.convertJsonFromFirebase(response.val());
+  return stock;
 };
 
 export default { createProduct, getStock };

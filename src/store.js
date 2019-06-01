@@ -13,7 +13,6 @@ export default new Vuex.Store({
       state.stock.push(product);
     },
     getStock(state, stock) {
-      debugger;
       state.stock = stock;
     }
   },
@@ -24,7 +23,6 @@ export default new Vuex.Store({
     },
     getStock: async ({ commit }) => {
       const stock = await services.getStock();
-      debugger;
       commit('getStock', stock);
     }
   },

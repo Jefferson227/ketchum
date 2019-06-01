@@ -2,7 +2,7 @@
   <v-layout row>
     <v-flex xs12 sm6 lg12>
       <v-list two-line>
-        <template v-for="(product, index) in products">
+        <template v-for="(product, index) in stock">
           <v-list-tile :key="index + product.name" avatar ripple @click="openProduct(product)">
             <v-list-tile-content>
               <v-list-tile-title>{{ product.name }}</v-list-tile-title>
@@ -32,7 +32,6 @@ export default {
     return {
       showModal: false,
       selectedProduct: {},
-      stock: {},
       products: [
         {
           id: 1,
@@ -103,10 +102,13 @@ export default {
       this.selectedProduct = {};
     }
   },
+  computed: {
+    stock() {
+      return this.$store.getters.stock;
+    }
+  },
   created() {
     this.$store.dispatch('getStock');
-    debugger;
-    this.stock = this.$store.getters.stock;
   }
 };
 </script>
