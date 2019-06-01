@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    stock: []
+    stock: [],
+    isLoading: false
   },
   mutations: {
     addNewProductToStock(state, product) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     getStock(state, stock) {
       state.stock = stock;
+    },
+    toggleLoading(state, payload) {
+      state.isLoading = payload;
     }
   },
   actions: {
@@ -23,10 +27,16 @@ export default new Vuex.Store({
     },
     getStock: async ({ commit }) => {
       const stock = await services.getStock();
+
       commit('getStock', stock);
+      commit('toggleLoading', false);
+    },
+    toggleLoading: ({ commit }, payload) => {
+      commit('toggleLoading', payload);
     }
   },
   getters: {
-    stock: state => state.stock
+    stock: state => state.stock,
+    isLoading: state => state.isLoading
   }
 });

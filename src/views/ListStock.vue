@@ -1,5 +1,8 @@
 <template>
-  <v-layout row>
+  <div v-if="showLoading">
+    <v-progress-circular :size="70" :width="7" color="primary" indeterminate></v-progress-circular>
+  </div>
+  <v-layout v-else row>
     <v-flex xs12 sm6 lg12>
       <v-list two-line>
         <template v-for="(product, index) in stock">
@@ -105,9 +108,13 @@ export default {
   computed: {
     stock() {
       return this.$store.getters.stock;
+    },
+    showLoading() {
+      return this.$store.getters.isLoading;
     }
   },
   created() {
+    this.$store.dispatch('toggleLoading', true);
     this.$store.dispatch('getStock');
   }
 };
