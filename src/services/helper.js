@@ -5,6 +5,8 @@ const convertJsonFromFirebase = firebaseJson => {
   for (let i = 0; i < firebaseJsonKeys.length; i++) {
     const key = firebaseJsonKeys[i];
     const product = firebaseJson[key];
+    product.id = key;
+
     stock.push(product);
   }
 

@@ -48,8 +48,8 @@
             </v-flex>
             <v-flex xs12 class="text-xs-center">
               <v-spacer></v-spacer>
-              <v-btn color="primary" @click="close">Salvar</v-btn>
-              <v-btn color="primary" @click="addNewProduct">Criar</v-btn>
+              <v-btn color="primary" v-if="product.id" @click="close">Salvar</v-btn>
+              <v-btn color="primary" v-if="!product.id" @click="addNewProduct">Criar</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
