@@ -1,4 +1,6 @@
 const convertJsonFromFirebase = firebaseJson => {
+  if (!firebaseJson) return [];
+
   const firebaseJsonKeys = Object.keys(firebaseJson);
   const stock = [];
 

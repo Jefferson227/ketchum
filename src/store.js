@@ -13,6 +13,9 @@ export default new Vuex.Store({
     addNewProductToStock(state, product) {
       state.stock.push(product);
     },
+    updateProduct(state, product) {
+      state.stock[product.id] = product;
+    },
     getStock(state, stock) {
       state.stock = stock;
     },
@@ -24,6 +27,10 @@ export default new Vuex.Store({
     addNewProductToStock: async ({ commit }, payload) => {
       const productAdded = await services.createProduct(payload);
       commit('addNewProductToStock', productAdded);
+    },
+    updateProduct: async ({ commit }, payload) => {
+      const productUpdated = await services.updateProduct(payload);
+      commit('updateProduct', { productUpdated });
     },
     getStock: async ({ commit }) => {
       const stock = await services.getStock();

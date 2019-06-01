@@ -9,6 +9,14 @@ const createProduct = async product => {
   return product;
 };
 
+const updateProduct = async product => {
+  await database()
+    .ref('stock')
+    .set(product);
+
+  return product;
+};
+
 const getStock = async () => {
   const response = await database()
     .ref('stock')
@@ -18,4 +26,4 @@ const getStock = async () => {
   return stock;
 };
 
-export default { createProduct, getStock };
+export default { createProduct, updateProduct, getStock };

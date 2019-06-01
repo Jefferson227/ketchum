@@ -5,7 +5,13 @@
   <v-layout v-else row>
     <v-flex xs12 sm6 lg12>
       <v-list two-line>
-        <template v-for="(product, index) in stock">
+        <div v-if="!stock.length">
+          Parece que ainda não há produtos no seu estoque.
+          <a
+            @click="createProduct"
+          >Bora criar um agora?</a>
+        </div>
+        <template v-else v-for="(product, index) in stock">
           <v-list-tile :key="index + product.name" avatar ripple @click="openProduct(product)">
             <v-list-tile-content>
               <v-list-tile-title>{{ product.name }}</v-list-tile-title>
@@ -116,6 +122,7 @@ export default {
   created() {
     this.$store.dispatch('toggleLoading', true);
     this.$store.dispatch('getStock');
+    console.log(this.stock);
   }
 };
 </script>

@@ -48,7 +48,7 @@
             </v-flex>
             <v-flex xs12 class="text-xs-center">
               <v-spacer></v-spacer>
-              <v-btn color="primary" v-if="product.id" @click="close">Salvar</v-btn>
+              <v-btn color="primary" v-if="product.id" @click="updateProduct">Salvar</v-btn>
               <v-btn color="primary" v-if="!product.id" @click="addNewProduct">Criar</v-btn>
             </v-flex>
           </v-layout>
@@ -75,6 +75,11 @@ export default {
     },
     addNewProduct() {
       this.$store.dispatch('addNewProductToStock', this.product);
+      this.close();
+    },
+    updateProduct() {
+      this.$store.dispatch('updateProduct', this.product);
+      this.close();
     }
   },
   computed: {
