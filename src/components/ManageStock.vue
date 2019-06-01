@@ -44,6 +44,14 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
+              <v-text-field
+                label="Quantidade disponível"
+                v-model="product.quantityAvailable"
+                type="text"
+                required
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs12>
               <v-textarea label="Comentários" type="text" v-model="product.comments"></v-textarea>
             </v-flex>
             <v-flex xs12 class="text-xs-center">

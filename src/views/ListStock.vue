@@ -122,7 +122,6 @@ export default {
   created() {
     this.$store.dispatch('toggleLoading', true);
     this.$store.dispatch('getStock');
-    console.log(this.stock);
   }
 };
 </script>
