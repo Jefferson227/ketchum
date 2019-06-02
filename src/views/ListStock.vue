@@ -26,7 +26,12 @@
         </template>
       </v-list>
     </v-flex>
-    <ManageStock :isVisible="showModal" :selectedProduct="selectedProduct" @close="resetFields"/>
+    <ManageStock
+      :isVisible="showModal"
+      :stock="stock"
+      :selectedProduct="selectedProduct"
+      @close="resetFields"
+    />
     <v-btn fab bottom right color="pink" dark fixed @click="createProduct">
       <v-icon>add</v-icon>
     </v-btn>

@@ -75,7 +75,8 @@ export default {
   },
   props: {
     isVisible: Boolean,
-    selectedProduct: Object
+    selectedProduct: Object,
+    stock: Array
   },
   methods: {
     close() {
@@ -83,10 +84,12 @@ export default {
     },
     addNewProduct() {
       this.$store.dispatch('addNewProductToStock', this.product);
+      this.$store.dispatch('getStock', this.stock);
       this.close();
     },
     updateProduct() {
       this.$store.dispatch('updateProduct', this.product);
+      this.$store.dispatch('getStock', this.stock);
       this.close();
     }
   },

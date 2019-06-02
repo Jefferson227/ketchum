@@ -30,7 +30,7 @@ export default new Vuex.Store({
     },
     updateProduct: async ({ commit }, payload) => {
       const productUpdated = await services.updateProduct(payload);
-      commit('updateProduct', { productUpdated });
+      commit('updateProduct', productUpdated);
     },
     getStock: async ({ commit }) => {
       const stock = await services.getStock();

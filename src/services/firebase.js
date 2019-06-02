@@ -12,6 +12,7 @@ const createProduct = async product => {
 const updateProduct = async product => {
   await database()
     .ref('stock')
+    .child(product.id)
     .set(product);
 
   return product;
