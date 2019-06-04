@@ -52,6 +52,9 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs12>
+              <v-checkbox v-model="product.isUnmeasurable" label="Imensurável?"></v-checkbox>
+            </v-flex>
+            <v-flex xs12>
               <v-textarea label="Comentários" type="text" v-model="product.comments"></v-textarea>
             </v-flex>
             <v-flex xs12 class="text-xs-center">
