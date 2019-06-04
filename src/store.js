@@ -16,6 +16,9 @@ export default new Vuex.Store({
     updateProduct(state, product) {
       state.stock[product.id] = product;
     },
+    deleteProduct(state, product) {
+      state.stock[product.id] = null;
+    },
     getStock(state, stock) {
       state.stock = stock;
     },
@@ -31,6 +34,10 @@ export default new Vuex.Store({
     updateProduct: async ({ commit }, payload) => {
       const productUpdated = await services.updateProduct(payload);
       commit('updateProduct', productUpdated);
+    },
+    deleteProduct: async ({ commit }, payload) => {
+      const productDeleted = await services.deleteProduct(payload);
+      commit('deleteProduct', productDeleted);
     },
     getStock: async ({ commit }) => {
       const stock = await services.getStock();

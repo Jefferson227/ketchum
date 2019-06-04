@@ -18,6 +18,15 @@ const updateProduct = async product => {
   return product;
 };
 
+const deleteProduct = async product => {
+  await database()
+    .ref('stock')
+    .child(product.id)
+    .remove();
+
+  return product;
+};
+
 const getStock = async () => {
   const response = await database()
     .ref('stock')
@@ -27,4 +36,4 @@ const getStock = async () => {
   return stock;
 };
 
-export default { createProduct, updateProduct, getStock };
+export default { createProduct, updateProduct, deleteProduct, getStock };

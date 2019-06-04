@@ -57,10 +57,17 @@
             <v-flex xs12>
               <v-textarea label="Comentários" type="text" v-model="product.comments"></v-textarea>
             </v-flex>
-            <v-flex xs12 class="text-xs-center">
+            <v-flex xs12 class="text-xs-center" v-if="!showDeleteConfirmation">
               <v-spacer></v-spacer>
               <v-btn color="primary" v-if="product.id" @click="updateProduct">Salvar</v-btn>
+              <v-btn color="error" v-if="product.id" @click="deleteProduct">Deletar</v-btn>
               <v-btn color="primary" v-if="!product.id" @click="addNewProduct">Criar</v-btn>
+            </v-flex>
+            <v-flex xs12 class="text-xs-center" v-if="showDeleteConfirmation">
+              <v-spacer></v-spacer>
+              <div>Deletar esse produto?</div>
+              <v-btn color="primary" v-if="product.id" @click="confirmDeleteProduct">Sim</v-btn>
+              <v-btn color="error" v-if="product.id" @click="unconfirmDeleteProduct">Não</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -73,7 +80,8 @@
 export default {
   data() {
     return {
-      unitsOfMeasure: ['g', 'ml', 'unid.']
+      unitsOfMeasure: ['g', 'ml', 'unid.'],
+      showDeleteConfirmation: false
     };
   },
   props: {
@@ -94,6 +102,17 @@ export default {
       this.$store.dispatch('updateProduct', this.product);
       this.$store.dispatch('getStock', this.stock);
       this.close();
+    },
+    deleteProduct() {
+      this.showDeleteConfirmation = true;
+    },
+    confirmDeleteProduct() {
+      this.$store.dispatch('deleteProduct', this.product);
+      this.$store.dispatch('getStock', this.stock);
+      this.close();
+    },
+    unconfirmDeleteProduct() {
+      this.showDeleteConfirmation = false;
     }
   },
   computed: {
