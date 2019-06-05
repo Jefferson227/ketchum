@@ -34,6 +34,7 @@
                 type="text"
                 required
               ></v-text-field>
+              <CurrencyField :label="'Preço unitário teste'" v-model="product.unitPrice" />
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -77,6 +78,8 @@
 </template>
 
 <script>
+import CurrencyField from './CurrencyField.vue';
+
 export default {
   data() {
     return {
@@ -119,6 +122,9 @@ export default {
     product() {
       return { ...this.selectedProduct };
     }
+  },
+  components: {
+    CurrencyField
   }
 };
 </script>
