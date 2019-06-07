@@ -34,7 +34,7 @@
                 type="text"
                 required
               ></v-text-field>
-              <CurrencyField :label="'Preço unitário teste'" v-model="product.unitPrice" />
+              <CurrencyField :label="'Preço unitário teste'" @get-formatted-value="getFormattedValue" v-model="product.unitPrice" />
             </v-flex>
             <v-flex xs12>
               <v-text-field
@@ -116,6 +116,9 @@ export default {
     },
     unconfirmDeleteProduct() {
       this.showDeleteConfirmation = false;
+    },
+    getFormattedValue(formattedValue) {
+      console.log(formattedValue);
     }
   },
   computed: {
