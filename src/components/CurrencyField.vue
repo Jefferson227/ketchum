@@ -4,7 +4,13 @@
 
 <script>
 const fieldHasOnlyNumbers = event => {
-  return event.code.startsWith('Digit') || event.key === 'Backspace' || event.key === 'Delete';
+  return (
+    event.code.includes('Backspace') ||
+    event.code.includes('Digit') ||
+    event.code.includes('Numpad') ||
+    event.key === 'Backspace' ||
+    event.key === 'Delete'
+  );
 };
 
 export default {
@@ -13,13 +19,11 @@ export default {
   },
   methods: {
     updateText(event) {
-      // debugger;
-      console.log(event.code);
       if (!fieldHasOnlyNumbers(event)) {
         event.preventDefault();
         return;
       }
-      // this.$emit('get-formatted-value', event.target.value.concat(event.key));
+      this.$emit('get-formatted-value', event.target.value.concat(event.key));
     }
   }
 };
